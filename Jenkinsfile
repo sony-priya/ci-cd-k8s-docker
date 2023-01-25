@@ -23,8 +23,12 @@ pipeline{
                 sh 'mvn test'
             }
         }
-
-        stage('build && SonarQube analysis') {
+        stage('INTEGRATION TEST'){
+            steps {
+                sh 'mvn verify -DskipUnitTests'
+            }
+        }
+        stage('checkstyle && SonarQube analysis') {
                     environment {
                      scannerHome = tool 'sonar4.7'
                   }
